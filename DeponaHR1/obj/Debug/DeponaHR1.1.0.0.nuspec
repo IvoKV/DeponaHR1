@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>DeponaHR1</id>
+    <version>1.0.0</version>
+    <authors>DeponaHR1</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <icon>Icon.png</icon>
+    <description>Processar Depona leveranser till utvald destination.</description>
+    <copyright>Region Stockholm, SF IT, MLT</copyright>
+    <dependencies>
+      <group targetFramework=".NETCoreApp3.1">
+        <dependency id="Cuemon.Collections.Specialized" version="5.0.2019.40" exclude="Build,Analyzers" />
+        <dependency id="DotNetZip" version="1.15.0" exclude="Build,Analyzers" />
+        <dependency id="System.Collections.Specialized" version="4.3.0" exclude="Build,Analyzers" />
+        <dependency id="System.Configuration.ConfigurationManager" version="5.0.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <frameworkReferences>
+      <group targetFramework=".NETCoreApp3.1">
+        <frameworkReference name="Microsoft.WindowsDesktop.App.WindowsForms" />
+      </group>
+    </frameworkReferences>
+  </metadata>
+  <files>
+    <file src="C:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\bin\Debug\netcoreapp3.1\DeponaHR1.runtimeconfig.json" target="lib\netcoreapp3.1\DeponaHR1.runtimeconfig.json" />
+    <file src="C:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\bin\Debug\netcoreapp3.1\DeponaHR1.dll" target="lib\netcoreapp3.1\DeponaHR1.dll" />
+    <file src="H:\Depona_workfolder\Icon\Icon.png" target="Icon.png" />
+  </files>
+</package>

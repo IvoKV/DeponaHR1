@@ -1,0 +1,217 @@
+{
+  "version": 3,
+  "targets": {
+    "UAP,Version=v10.0.17763": {
+      "DeponaHR1/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/DeponaHR1.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DeponaHR1.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
+      }
+    },
+    "UAP,Version=v10.0.17763/win10-arm": {
+      "DeponaHR1/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/DeponaHR1.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DeponaHR1.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
+      }
+    },
+    "UAP,Version=v10.0.17763/win10-arm-aot": {
+      "DeponaHR1/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/DeponaHR1.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DeponaHR1.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
+      }
+    },
+    "UAP,Version=v10.0.17763/win10-arm64-aot": {
+      "DeponaHR1/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/DeponaHR1.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DeponaHR1.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
+      }
+    },
+    "UAP,Version=v10.0.17763/win10-x64": {
+      "DeponaHR1/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/DeponaHR1.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DeponaHR1.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
+      }
+    },
+    "UAP,Version=v10.0.17763/win10-x64-aot": {
+      "DeponaHR1/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/DeponaHR1.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DeponaHR1.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
+      }
+    },
+    "UAP,Version=v10.0.17763/win10-x86": {
+      "DeponaHR1/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/DeponaHR1.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DeponaHR1.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
+      }
+    },
+    "UAP,Version=v10.0.17763/win10-x86-aot": {
+      "DeponaHR1/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/DeponaHR1.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DeponaHR1.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WindowsForms"
+        ]
+      }
+    }
+  },
+  "libraries": {
+    "DeponaHR1/1.0.0": {
+      "type": "project",
+      "path": "../DeponaHR1/DeponaHR1.csproj",
+      "msbuildProject": "../DeponaHR1/DeponaHR1.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "UAP,Version=v10.0.17763": [
+      "DeponaHR1 >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\cwz7\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\cwz7\\source\\repos\\DeponaHR1\\WapProjTemplate1\\WapProjTemplate1.wapproj",
+      "projectName": "WapProjTemplate1",
+      "projectPath": "C:\\Users\\cwz7\\source\\repos\\DeponaHR1\\WapProjTemplate1\\WapProjTemplate1.wapproj",
+      "packagesPath": "C:\\Users\\cwz7\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\cwz7\\source\\repos\\DeponaHR1\\WapProjTemplate1\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\cwz7\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "uap10.0.17763"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "uap10.0.17763": {
+          "projectReferences": {
+            "C:\\Users\\cwz7\\source\\repos\\DeponaHR1\\DeponaHR1\\DeponaHR1.csproj": {
+              "projectPath": "C:\\Users\\cwz7\\source\\repos\\DeponaHR1\\DeponaHR1\\DeponaHR1.csproj"
+            }
+          }
+        }
+      }
+    },
+    "frameworks": {
+      "uap10.0.17763": {
+        "imports": [
+          "netcoreapp3.1",
+          "netcoreapp3.0",
+          "netcoreapp2.0",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net5.0-windows10.0.17763",
+          "net461"
+        ],
+        "assetTargetFallback": true,
+        "warn": true
+      }
+    },
+    "runtimes": {
+      "win10-arm": {
+        "#import": []
+      },
+      "win10-arm-aot": {
+        "#import": []
+      },
+      "win10-arm64-aot": {
+        "#import": []
+      },
+      "win10-x64": {
+        "#import": []
+      },
+      "win10-x64-aot": {
+        "#import": []
+      },
+      "win10-x86": {
+        "#import": []
+      },
+      "win10-x86-aot": {
+        "#import": []
+      }
+    }
+  }
+}
