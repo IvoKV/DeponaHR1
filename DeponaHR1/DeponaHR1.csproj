@@ -16,6 +16,7 @@
   <ItemGroup>
     <PackageReference Include="Cuemon.Collections.Specialized" Version="5.0.2019.40" />
     <PackageReference Include="DotNetZip" Version="1.15.0" />
+    <PackageReference Include="squirrel.windows" Version="1.9.0" />
     <PackageReference Include="System.Collections.Specialized" Version="4.3.0" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
   </ItemGroup>

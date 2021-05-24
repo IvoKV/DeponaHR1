@@ -38,3 +38,14 @@ C:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\bin\Debug\netcoreapp3.1\System.Ru
 C:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\bin\Debug\netcoreapp3.1\System.Text.Encoding.CodePages.dll
 C:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Text.Encoding.CodePages.dll
 C:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\obj\Debug\netcoreapp3.1\DeponaHR1.csprojAssemblyReference.cache
+C:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\bin\Debug\netcoreapp3.1\DeltaCompressionDotNet.MsDelta.dll
+C:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\bin\Debug\netcoreapp3.1\DeltaCompressionDotNet.PatchApi.dll
+C:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\bin\Debug\netcoreapp3.1\DeltaCompressionDotNet.dll
+C:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\bin\Debug\netcoreapp3.1\Mono.Cecil.Mdb.dll
+C:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\bin\Debug\netcoreapp3.1\Mono.Cecil.Pdb.dll
+C:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\bin\Debug\netcoreapp3.1\Mono.Cecil.Rocks.dll
+C:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\bin\Debug\netcoreapp3.1\Mono.Cecil.dll
+C:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\bin\Debug\netcoreapp3.1\SharpCompress.dll
+C:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\bin\Debug\netcoreapp3.1\Splat.dll
+C:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\bin\Debug\netcoreapp3.1\NuGet.Squirrel.dll
+C:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\bin\Debug\netcoreapp3.1\Squirrel.dll

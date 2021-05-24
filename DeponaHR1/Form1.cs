@@ -14,6 +14,7 @@ using DeponaHR1.CustomMappConfig;
 using DeponaHR1.FileHelper;
 using DeponaHR1.Zip;
 using System.Threading;
+using Squirrel;
 
 namespace DeponaHR1
 {
@@ -30,13 +31,23 @@ namespace DeponaHR1
             InitializeComponent();
 
             this.Text = "DeponaHR1 " + this.Tag.ToString();
-            txtDestination.TextChanged += new System.EventHandler(Text_Changed);
+            //txtDestination.TextChanged += new System.EventHandler(Text_Changed);
             txtSource.TextChanged += new EventHandler(Text_Changed);
             txtDone.TextChanged += new EventHandler(Text_Changed);
             txtLog.TextChanged += new EventHandler(Text_Changed);
             txtTemp.TextChanged += new EventHandler(Text_Changed);
             btnPlus.Click += new EventHandler(Button_AddMinusClicked);
             btnMinus.Click += new EventHandler(Button_AddMinusClicked);
+
+            CheckForUpdates();
+        }
+
+        private async Task CheckForUpdates()
+        {
+            using (var manager = new UpdateManager(@"G:\Lit\MLT_Förvaltning\DeponaHR\Releases"))
+            {
+                await manager.UpdateApp();
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -232,7 +243,7 @@ namespace DeponaHR1
         {
             if (_formConfigured)
             {
-                _dictMapp["Destination"] = txtDestination.Text;
+                //_dictMapp["Destination"] = txtDestination.Text;
                 _dictMapp["Source"] = txtSource.Text;
                 _dictMapp["Done"] = txtDone.Text;
                 _dictMapp["Log"] = txtLog.Text;
@@ -255,12 +266,14 @@ namespace DeponaHR1
         {
             Font f = new Font("Microsoft Sans Serif", 8.25f, FontStyle.Bold);
             bool errorFound = false;
+            /*
             if (!Directory.Exists(txtDestination.Text))
             {
                 txtDestination.Text = "Re-enter valid path!";
                 txtDestination.Font = f;
                 errorFound = true;
             }
+            */
 
             if (!Directory.Exists(txtSource.Text)) 
             {
@@ -629,6 +642,7 @@ namespace DeponaHR1
             btnDestinationOK.Visible = false;
             grpTreeView.Enabled = true;
             grpBatchParams.Enabled = true;
+            _dictMapp["Destination"] = txtDestination.Text;
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)

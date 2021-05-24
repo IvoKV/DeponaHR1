@@ -236,7 +236,6 @@ namespace DeponaHR1
             this.rbTemp.Name = "rbTemp";
             this.rbTemp.Size = new System.Drawing.Size(14, 13);
             this.rbTemp.TabIndex = 18;
-            this.rbTemp.TabStop = true;
             this.rbTemp.UseVisualStyleBackColor = true;
             // 
             // txtTemp
@@ -254,12 +253,12 @@ namespace DeponaHR1
             this.rbLog.Name = "rbLog";
             this.rbLog.Size = new System.Drawing.Size(14, 13);
             this.rbLog.TabIndex = 16;
-            this.rbLog.TabStop = true;
             this.rbLog.UseVisualStyleBackColor = true;
             // 
             // rbDone
             // 
             this.rbDone.AutoSize = true;
+            this.rbDone.Checked = true;
             this.rbDone.Location = new System.Drawing.Point(8, 82);
             this.rbDone.Name = "rbDone";
             this.rbDone.Size = new System.Drawing.Size(14, 13);
@@ -313,12 +312,10 @@ namespace DeponaHR1
             // rbDestination
             // 
             this.rbDestination.AutoSize = true;
-            this.rbDestination.Checked = true;
             this.rbDestination.Location = new System.Drawing.Point(6, 39);
             this.rbDestination.Name = "rbDestination";
             this.rbDestination.Size = new System.Drawing.Size(14, 13);
             this.rbDestination.TabIndex = 9;
-            this.rbDestination.TabStop = true;
             this.rbDestination.UseVisualStyleBackColor = true;
             // 
             // btnFilesInKallaDir
@@ -570,7 +567,7 @@ namespace DeponaHR1
             this.MaximumSize = new System.Drawing.Size(816, 489);
             this.MinimumSize = new System.Drawing.Size(816, 489);
             this.Name = "Form1";
-            this.Tag = "v. 1.0.5";
+            this.Tag = "v. 1.0.6";
             this.Text = "DeponaHR1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
