@@ -5773,11 +5773,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\cwz7\\source\\repos\\DeponaHR1\\DeponaHR1\\DeponaHR1.csproj",
+      "projectUniqueName": "C:\\Users\\cwz7\\source\\repos\\DeponaHR1\\DeponaHR1\\DeponaHR1.csproj",
       "projectName": "DeponaHR1",
-      "projectPath": "c:\\Users\\cwz7\\source\\repos\\DeponaHR1\\DeponaHR1\\DeponaHR1.csproj",
+      "projectPath": "C:\\Users\\cwz7\\source\\repos\\DeponaHR1\\DeponaHR1\\DeponaHR1.csproj",
       "packagesPath": "C:\\Users\\cwz7\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\cwz7\\source\\repos\\DeponaHR1\\DeponaHR1\\obj\\",
+      "outputPath": "C:\\Users\\cwz7\\source\\repos\\DeponaHR1\\DeponaHR1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

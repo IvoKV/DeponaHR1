@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "hjNoFpctCYxDV+9/dAuiJw0R0AkxV5iZ3t3yFhC+/ouVf/DNqlnUDkr9mcEDyPqYsp4Evy7BtVM2v6M3gX+Mhw==",
+  "dgSpecHash": "aT+RaIfwnwzTkaZf1D9Wsb1PYOazKcqrfuhP2sXl2DW2L7nJaaS+uMbTF7aXvwhglje618vC9I+ft3XcLqYKWg==",
   "success": true,
-  "projectFilePath": "c:\\Users\\cwz7\\source\\repos\\DeponaHR1\\DeponaHR1\\DeponaHR1.csproj",
+  "projectFilePath": "C:\\Users\\cwz7\\source\\repos\\DeponaHR1\\DeponaHR1\\DeponaHR1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\cwz7\\.nuget\\packages\\cuemon.collections.specialized\\5.0.2019.40\\cuemon.collections.specialized.5.0.2019.40.nupkg.sha512",
     "C:\\Users\\cwz7\\.nuget\\packages\\cuemon.core\\5.0.2019.40\\cuemon.core.5.0.2019.40.nupkg.sha512",

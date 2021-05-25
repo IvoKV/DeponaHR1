@@ -15,6 +15,7 @@ using DeponaHR1.FileHelper;
 using DeponaHR1.Zip;
 using System.Threading;
 using Squirrel;
+using System.Diagnostics;
 
 namespace DeponaHR1
 {
@@ -39,7 +40,17 @@ namespace DeponaHR1
             btnPlus.Click += new EventHandler(Button_AddMinusClicked);
             btnMinus.Click += new EventHandler(Button_AddMinusClicked);
 
+            AddVersionNumber();
             CheckForUpdates();
+        }
+
+        private void AddVersionNumber()
+        {
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetEntryAssembly();
+            FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
+
+            // todo: implement version handling
+            //this.Text += $" v. {versionInfo.FileVersion}";
         }
 
         private async Task CheckForUpdates()

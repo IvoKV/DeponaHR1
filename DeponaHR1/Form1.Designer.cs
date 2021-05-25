@@ -567,7 +567,7 @@ namespace DeponaHR1
             this.MaximumSize = new System.Drawing.Size(816, 489);
             this.MinimumSize = new System.Drawing.Size(816, 489);
             this.Name = "Form1";
-            this.Tag = "v. 1.0.6";
+            this.Tag = "v. 1.0.7";
             this.Text = "DeponaHR1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);

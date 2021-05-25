@@ -38,3 +38,14 @@ C:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\obj\Release\netcoreapp3.1\DeponaH
 C:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\obj\Release\netcoreapp3.1\DeponaHR1.dll
 C:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\obj\Release\netcoreapp3.1\DeponaHR1.pdb
 C:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\obj\Release\netcoreapp3.1\DeponaHR1.genruntimeconfig.cache
+c:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\bin\Release\netcoreapp3.1\DeltaCompressionDotNet.MsDelta.dll
+c:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\bin\Release\netcoreapp3.1\DeltaCompressionDotNet.PatchApi.dll
+c:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\bin\Release\netcoreapp3.1\DeltaCompressionDotNet.dll
+c:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\bin\Release\netcoreapp3.1\Mono.Cecil.Mdb.dll
+c:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\bin\Release\netcoreapp3.1\Mono.Cecil.Pdb.dll
+c:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\bin\Release\netcoreapp3.1\Mono.Cecil.Rocks.dll
+c:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\bin\Release\netcoreapp3.1\Mono.Cecil.dll
+c:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\bin\Release\netcoreapp3.1\SharpCompress.dll
+c:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\bin\Release\netcoreapp3.1\Splat.dll
+c:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\bin\Release\netcoreapp3.1\NuGet.Squirrel.dll
+c:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\bin\Release\netcoreapp3.1\Squirrel.dll

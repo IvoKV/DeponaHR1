@@ -48,3 +48,4 @@ c:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\obj\x86\Debug\netcoreapp3.1\Depon
 c:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\obj\x86\Debug\netcoreapp3.1\DeponaHR1.dll
 c:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\obj\x86\Debug\netcoreapp3.1\DeponaHR1.pdb
 c:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\obj\x86\Debug\netcoreapp3.1\DeponaHR1.genruntimeconfig.cache
+c:\Users\cwz7\source\repos\DeponaHR1\DeponaHR1\obj\x86\Debug\netcoreapp3.1\DeponaHR1.csprojAssemblyReference.cache
