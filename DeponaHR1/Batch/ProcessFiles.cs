@@ -16,7 +16,7 @@ namespace DeponaHR1.Batch
         private string _idxFileOutName;
         private string _pdfFileName;
         private string _pdfFilenameOut = "0000001.pdf";
-        string _fileCSVContent1;
+        private string _fileCSVContent1;
         private string DATIndicyAttributes;
 
         private bool _updateFileContent = false;     // if the .dat file content shoud be changed
