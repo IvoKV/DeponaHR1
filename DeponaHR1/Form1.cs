@@ -339,21 +339,27 @@ namespace DeponaHR1
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            // if error state, prevent uncontrolled form closing
-            if (VerifyMapConfiguration() && this.btnStartBatch.Enabled == true)
+            if (this.btnStartBatch.Enabled == true)
             {
-                string message = "Do you REALLY want to close this form? - Configuration is not syncronized - your configuration will not be saved!";
-                string caption = "Filesystem and configuration settings are out of sync - due to removing of folders!";
-                DialogResult dr = MessageBox.Show(message, caption, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Exclamation);
-                if (dr.Equals(DialogResult.Yes))
+                if (!VerifyMapConfiguration())
                 {
-                    //SaveConfiguraitons();     //moved to Form Closing Event
+                    string message = "Do you REALLY want to close this form? - Configuration is not syncronized - your configuration will not be saved!";
+                    string caption = "Filesystem and configuration settings are out of sync - due to removing of folders!";
+                    DialogResult dr = MessageBox.Show(message, caption, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Exclamation);
+                    if (dr.Equals(DialogResult.Yes))
+                    {
+                        //SaveConfiguraitons();     //moved to Form Closing Event
+                        this.Close();
+                    }
+                }
+                else
+                {
                     this.Close();
                 }
             }
             else
             {
-                //SaveConfiguraitons();          //moved to Form Closing Event
+                // Configuration will be saved in Closing Event
                 this.Close();
             }
         }

@@ -330,9 +330,9 @@ namespace DeponaHR1
             // 
             // btnMyChoice
             // 
-            this.btnMyChoice.Location = new System.Drawing.Point(259, 15);
+            this.btnMyChoice.Location = new System.Drawing.Point(259, 248);
             this.btnMyChoice.Name = "btnMyChoice";
-            this.btnMyChoice.Size = new System.Drawing.Size(115, 26);
+            this.btnMyChoice.Size = new System.Drawing.Size(99, 26);
             this.btnMyChoice.TabIndex = 11;
             this.btnMyChoice.UseVisualStyleBackColor = true;
             this.btnMyChoice.Click += new System.EventHandler(this.btnMyChoice_Click);
@@ -340,11 +340,11 @@ namespace DeponaHR1
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(203, 21);
+            this.label5.Location = new System.Drawing.Point(176, 254);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(50, 15);
+            this.label5.Size = new System.Drawing.Size(64, 15);
             this.label5.TabIndex = 12;
-            this.label5.Text = "Choose:";
+            this.label5.Text = "Pathname:";
             // 
             // grpFooter
             // 
