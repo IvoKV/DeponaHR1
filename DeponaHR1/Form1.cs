@@ -1,21 +1,16 @@
-﻿using System;
-using System.Configuration;
+﻿using DeponaHR1.FileHelper;
+using DeponaHR1.Zip;
+using Squirrel;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Collections.Specialized;
-using DeponaHR1.CustomMappConfig;
-using DeponaHR1.FileHelper;
-using DeponaHR1.Zip;
-using System.Threading;
-using Squirrel;
-using System.Diagnostics;
 
 namespace DeponaHR1
 {
@@ -261,7 +256,7 @@ namespace DeponaHR1
                 _dictMapp["Temp"] = txtTemp.Text;
                 SaveConfiguraitons();
 
-                if(!VerifyMapConfigurationWithError())
+                if(!VerifyMapConfiguration())
                 {
                     Font f = new Font("Segoe UI", 9, FontStyle.Regular);
                     txtDestination.Font = f;
@@ -273,47 +268,41 @@ namespace DeponaHR1
             }
         }
 
-        private bool VerifyMapConfigurationWithError()
+        private bool VerifyMapConfiguration()
         {
             Font f = new Font("Microsoft Sans Serif", 8.25f, FontStyle.Bold);
-            bool errorFound = false;
-            /*
-            if (!Directory.Exists(txtDestination.Text))
-            {
-                txtDestination.Text = "Re-enter valid path!";
-                txtDestination.Font = f;
-                errorFound = true;
-            }
-            */
+            bool pathVerification = true;
+
+            // Do NOT verify txtDestination!
 
             if (!Directory.Exists(txtSource.Text)) 
             {
                 txtSource.Text = "Re-enter valid path!";
                 txtSource.Font = f;
-                errorFound = true;
+                pathVerification = false;
             }
             
             if (!Directory.Exists(txtDone.Text))
             {
                 txtDone.Text = "Re-enter valid path!";
                 txtDone.Font = f;
-                errorFound = true;
+                pathVerification = false;
             }
 
             if (!Directory.Exists(txtLog.Text))
             {
                 txtLog.Text = "Re-enter valid path!";
                 txtLog.Font = f;
-                errorFound = true;
+                pathVerification = false;
             }
 
             if (!Directory.Exists(txtTemp.Text))
             {
                 txtTemp.Text = "Re-enter valid path!";
                 txtTemp.Font = f;
-                errorFound = true;
+                pathVerification = false;
             }
-            return errorFound;
+            return pathVerification;
         }
 
         private void btnMyChoice_Click(object sender, EventArgs e)
@@ -326,20 +315,20 @@ namespace DeponaHR1
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            CountFilesInKallaDir();
+            CountPDFFilesInKallaDir();
         }
 
-        private int CountFilesInKallaDir()
+        private int CountPDFFilesInKallaDir()
         {
-            if (!VerifyMapConfigurationWithError())
+            if (VerifyMapConfiguration())
             {
-                var filecount = (from file in Directory.EnumerateFiles(_dictMapp["Source"], "*.dat", SearchOption.TopDirectoryOnly)
+                var filecount = (from file in Directory.EnumerateFiles(_dictMapp["Source"], "*.pdf", SearchOption.TopDirectoryOnly)
                                     select file).Count();
 
                 lblFilesInSource.Text = lblFilesInSource.Tag.ToString();
                 lblFilesInSource.Text += filecount;
 
-                DeponaConfig.Configuration.SetProcessControlFlowInstance("NumFilesInSourceDir", filecount);
+                DeponaConfig.Configuration.SetProcessControlFlowInstance("NumPDFFilesInSourceDir", filecount);
                 return filecount;
             }
             else
@@ -350,10 +339,8 @@ namespace DeponaHR1
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            bool errorFound = VerifyMapConfigurationWithError();
-
-            // if error state, prevent uncontroled form colosing
-            if (errorFound)
+            // if error state, prevent uncontrolled form closing
+            if (VerifyMapConfiguration() && this.btnStartBatch.Enabled == true)
             {
                 string message = "Do you REALLY want to close this form? - Configuration is not syncronized - your configuration will not be saved!";
                 string caption = "Filesystem and configuration settings are out of sync - due to removing of folders!";
@@ -379,42 +366,61 @@ namespace DeponaHR1
 
         private void btnStartBatch_Click(object sender, EventArgs e)
         {
-            bool errorFound = VerifyMapConfigurationWithError();
-
-            if(CountFilesInKallaDir() == 0)
+            if (CountPDFFilesInKallaDir() == 0)
             {
                 MessageBox.Show("'Source' map is empty!", "Source empty", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            if (!errorFound)
+            // FileParameterContextVerification
+            var fileNameImport = new Batch.FileNameImport(DeponaConfig.Configuration.GetMappSettingsInstance("Source"));
+            List<string> fileNamesCollectionDAT = new List<string>(fileNameImport.getFileNamesCollectionDAT());
+            List<string> fileNamesCollectionPDF = new List<string>(fileNameImport.getFileNamesCollectionPDF());
+
+            var fileParameterContextVerification = new Batch.FileParameterContentVerification(fileNamesCollectionPDF, fileNamesCollectionDAT);
+            if (!fileParameterContextVerification.verifyContents())
             {
-                btnClose.Enabled = false;
-                grpBatchParams.Enabled = false;
-                grpTreeView.Enabled = false;
-                this.btnStartBatch.Enabled = false;
-                Directory.SetCurrentDirectory(_dictMapp["Source"]);
+                String caption = "FileParameter Verification Error";
+                String message = "One (or more) of the following conditions have been violated:\n";
+                message += "1. Only 1 '.dat' file must be present in the delivery package.\n";
+                message += "2. The amount of parameter indices in the '.dat' file must be equal to the amount of delivered '.pdf' files in the delivery package.";
 
-                // CreateProcessInformation
-                _dictProcess["SystemVersion"] = this.Tag.ToString();
-                DeponaConfig.Configuration.SaveProcessSettingsDictionary(_dictProcess);
-
-                BatchStart bs = new BatchStart(_dictMapp, _dictProcess);
-                var a = bs.StartPocessAsync();
-
-                DeponaConfig.Configuration.SetProcessControlFlowInstance("BatchInProgress", 1);         // batch in Progress = 1, Zip in progress = 2
-                progressBar1.Minimum = 0;
-                progressBar1.Maximum = DeponaConfig.Configuration.GetProcessControlFlowInstance("NumFilesInSourceDir");
-
-                progressBarCopyDelete.Minimum = 0;
-                progressBarCopyDelete.Maximum = DeponaConfig.Configuration.GetProcessControlFlowInstance("NumFilesInSourceDir") * 4;
-
-                timer1.Start();
+                MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            else
+
+            bool allFileNamesOk = fileParameterContextVerification.verifyDATattributeCorrespondsForPDFFileName();
+            if (!allFileNamesOk)
             {
-                MessageBox.Show("Error state, check Mapp configuration!", "Bad App configuration!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string caption = "Inconsistency found in delivery metadata!";
+                string message = "Non applicable reference(s) to .pdf filename(s) found in .dat file.\n";
+                message += "You must abort this process! Contact delivery advisor.";
+                MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
+
+            // Batch start
+            btnClose.Enabled = false;
+            grpBatchParams.Enabled = false;
+            grpTreeView.Enabled = false;
+            this.btnStartBatch.Enabled = false;
+            Directory.SetCurrentDirectory(_dictMapp["Source"]);
+
+            // CreateProcessInformation
+            _dictProcess["SystemVersion"] = this.Tag.ToString();
+            DeponaConfig.Configuration.SaveProcessSettingsDictionary(_dictProcess);
+
+            BatchStart bs = new BatchStart(_dictMapp, _dictProcess);
+            var a = bs.StartPocessAsync();
+
+            DeponaConfig.Configuration.SetProcessControlFlowInstance("BatchInProgress", 1);         // batch in Progress = 1, Zip in progress = 2
+            progressBar1.Minimum = 0;
+            progressBar1.Maximum = DeponaConfig.Configuration.GetProcessControlFlowInstance("NumPDFFilesInSourceDir");
+
+            progressBarCopyDelete.Minimum = 0;
+            progressBarCopyDelete.Maximum = DeponaConfig.Configuration.GetProcessControlFlowInstance("NumPDFFilesInSourceDir") * 3; // was * 4
+
+            timer1.Start();
         }
 
         private void btnTest_Click(object sender, EventArgs e)
@@ -606,13 +612,21 @@ namespace DeponaHR1
             lblProcessedFiles.Text = DeponaConfig.Configuration.GetProcessControlFlowInstance("NumProcessedFiles").ToString();
             progressBar1.Value = DeponaConfig.Configuration.GetProcessControlFlowInstance("NumProcessedFiles");
 
-            progressBarCopyDelete.Value = DeponaConfig.Configuration.GetProcessControlFlowInstance("FileManipCount");
+            try
+            {
+                progressBarCopyDelete.Value = DeponaConfig.Configuration.GetProcessControlFlowInstance("FileManipCount");
+            }
+            catch(System.ArgumentOutOfRangeException)
+            {
+                progressBarCopyDelete.Value = progressBarCopyDelete.Maximum;
+            }
 
             if(DeponaConfig.Configuration.GetProcessControlFlowInstance("BatchInProgress") <= 0)
             {
                 timer1.Stop();
                 string caption = "Process is finished!";
-                MessageBox.Show($"Klar!\nInlästa filer: {DeponaConfig.Configuration.GetProcessControlFlowInstance("NumProcessedFiles")}", caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                progressBarCopyDelete.Value = progressBarCopyDelete.Maximum;
+                MessageBox.Show($"Klar!\nInlästa filer (.pdf): {DeponaConfig.Configuration.GetProcessControlFlowInstance("NumProcessedFiles")}", caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 btnClose.Enabled = true;
             }

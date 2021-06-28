@@ -12,7 +12,8 @@ namespace DeponaHR1.Batch
         private int mapy = -1;
         private bool lessThousandFiles;
 
-        private List<string> _fileNameList;
+        private List<string> PDFFileNames;
+        private string datFileName;
         private int countOfRond;
         private string _currBatchSuffix;
         private string[,] _indexfil;
@@ -22,8 +23,10 @@ namespace DeponaHR1.Batch
             Directory.SetCurrentDirectory(DeponaConfig.Configuration.GetMappSettingsInstance("Destination"));
         }
 
-        public MappingStructure(List<string> files, int suffix) : this()
+        public MappingStructure(List<string> PDFFileNames, int suffix, String datFileName) : this()
         {
+            this.datFileName = datFileName;
+
             mapx = 9;
             mapy = -1;
             countOfRond = 0;
@@ -33,10 +36,10 @@ namespace DeponaHR1.Batch
             else
                 _currBatchSuffix = "-" + suffix.ToString();
 
-            _fileNameList = files;
+            this.PDFFileNames = PDFFileNames;
             _indexfil = new string[10, 100];
 
-            if(DeponaConfig.Configuration.GetProcessControlFlowInstance("NumFilesInSourceDir") < 1000)
+            if(DeponaConfig.Configuration.GetProcessControlFlowInstance("NumPDFFilesInSourceDir") < 1000)
             {
                 lessThousandFiles = true;
                 countOfRond = 0;
@@ -85,8 +88,22 @@ namespace DeponaHR1.Batch
 
         public void CreateMappingStructure()
         {
-            foreach (var dirListItem in _fileNameList)
+            // extract dat file to List
+            // extract parameter 7
+            var datFileContentConverter = new DATFileContentConverter();
+            datFileContentConverter.DATFileAttributesReader(datFileName);
+
+            // send pdf fileName which corresponds to parameter 7 to ProcessFiles, send .dat file object which just has been created
+            List<string> DATFileName = new List<string>();
+
+            foreach (var PDFdirListItem in PDFFileNames)
             {
+                if (DeponaConfig.Configuration.GetProcessControlFlowInstance("BatchInProgress") <= 0)
+                {
+                    return;
+                }
+                string DATIndicyRow = datFileContentConverter.ExtractDATIndicyRow(PDFdirListItem);
+
                 getNextMap(ref mapx, ref mapy);
 
                 string xx = mapx.ToString();
@@ -101,9 +118,7 @@ namespace DeponaHR1.Batch
                     Directory.SetCurrentDirectory(DeponaConfig.Configuration.GetMappSettingsInstance("Destination"));
                     Directory.CreateDirectory(workFolder);
                 }
-
-                
-                ProcessFiles tr = new ProcessFiles(dirListItem,
+                ProcessFiles tr = new ProcessFiles(PDFdirListItem, DATIndicyRow,
                                                                         xx,
                                                                         yy,
                                                                        countOfRond, _currBatchSuffix);

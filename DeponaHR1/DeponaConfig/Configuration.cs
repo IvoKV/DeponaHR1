@@ -24,9 +24,9 @@ namespace DeponaHR1.DeponaConfig
             _dictProcess = new Dictionary<string, string>(4);
             _dictProcessParams = new Dictionary<string, int>();
 
-            Console.WriteLine("In Configuration constructor!");
+            //Console.WriteLine("In Configuration constructor!");
             InitializeDictionaries();
-            _logFilePathName = initializeLogFile();
+            _logFilePathName = initializeLogFileDirName();
             InitializeLogFile();
         }
 
@@ -50,7 +50,7 @@ namespace DeponaHR1.DeponaConfig
             }
         }
 
-        private static string initializeLogFile()
+        private static string initializeLogFileDirName()
         {
             StringBuilder sbLogFileName = new StringBuilder();
             sbLogFileName.Append("Syslog_DeponaHR1_");
@@ -98,8 +98,8 @@ namespace DeponaHR1.DeponaConfig
                 _dictProcess.Add(instance.Name, instance.Value);
             }
 
-            // Process Params Section
-            _dictProcessParams.Add("NumFilesInSourceDir", 0);
+            // Process Params Section (exists only during execution)
+            _dictProcessParams.Add("NumPDFFilesInSourceDir", 0);
             _dictProcessParams.Add("NumProcessedFiles", 0);
             _dictProcessParams.Add("BatchInProgress", 0);
             _dictProcessParams.Add("FileManipCount", 0);

@@ -16,8 +16,8 @@ namespace DeponaHR1.Batch
         private string _idxFileOutName;
         private string _pdfFileName;
         private string _pdfFilenameOut = "0000001.pdf";
-        //private StringBuilder _sb;
         private string _fileCSVContent;
+        private string DATIndicyAttributes;
 
         private bool _updateFileContent = false;     // if the .dat file content shoud be changed
 
@@ -26,13 +26,14 @@ namespace DeponaHR1.Batch
             // OBS: Current directory = Source
             Directory.SetCurrentDirectory(DeponaConfig.Configuration.GetMappSettingsInstance("Source"));
         }
-        public ProcessFiles(string fileItemName, string mapX, string mapY, int rond, string currBatchSuff) : this()
+        public ProcessFiles(string PDFfileItemName, string DATIndicy, string mapX, string mapY, int rond, string currBatchSuff) : this()
         {
-            this._fileItemName = fileItemName;
+            this._fileItemName = PDFfileItemName;
             this._mapX = mapX;
             this._mapY = mapY;
             this._rond = rond.ToString();
             this._currentBatchSuffix = currBatchSuff;
+            this.DATIndicyAttributes = DATIndicy;
 
             PrepareUpdateDatFile();
             WriteIdxPdfToDestination();
@@ -52,7 +53,7 @@ namespace DeponaHR1.Batch
             _idxFileOutName = "0000idx.dat";
             _idxFileOutName = _idxFileOutName.Insert(4, _rond.ToString());
             _pdfFileName = _fileItemName.Replace("dat", "pdf");
-            _fileCSVContent = File.ReadAllText(Path.Combine(DeponaConfig.Configuration.GetMappSettingsInstance("Source"), _fileItemName), Encoding.UTF8);
+            _fileCSVContent = DATIndicyAttributes;
 
             if (_updateFileContent)
             {
@@ -63,18 +64,18 @@ namespace DeponaHR1.Batch
         private void WriteIdxPdfToDestination()
         {
             string lockedBatchName = DeponaConfig.Configuration.GetProcessSettingsInstance("DeponaFakt") + DeponaConfig.Configuration.GetProcessSettingsInstance("BatchNo") + _currentBatchSuffix + ".lock";
-            string fileNameOut = Path.Combine(DeponaConfig.Configuration.GetMappSettingsInstance("Destination"), lockedBatchName, _mapX, _mapY, _idxFileOutName);
-            File.WriteAllText(fileNameOut, _fileCSVContent, Encoding.Default);
-
-            if (File.Exists(_pdfFileName))
+            string DATfileNameOut = Path.Combine(DeponaConfig.Configuration.GetMappSettingsInstance("Destination"), lockedBatchName, _mapX, _mapY, _idxFileOutName);
+            File.WriteAllText(DATfileNameOut, _fileCSVContent, Encoding.Default);
+            
+            if (File.Exists(_pdfFileName))  
             {
                 string[] csv = _fileCSVContent.Split(";");
 
                 string pdfFileName = csv[csv.Length - 1].Trim();
                 string pdfFileNameOut = _pdfFilenameOut.Insert(4, _rond.ToString());
-
-                File.Copy(pdfFileName, 
-                    Path.Combine(DeponaConfig.Configuration.GetMappSettingsInstance("Destination"), lockedBatchName, _mapX, _mapY, _pdfFilenameOut));
+                
+                File.Copy(pdfFileName,
+                    Path.Combine(DeponaConfig.Configuration.GetMappSettingsInstance("Destination"), lockedBatchName, _mapX, _mapY, pdfFileNameOut));
             }
             else
             {

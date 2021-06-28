@@ -351,7 +351,7 @@ namespace DeponaHR1
             this.grpFooter.Controls.Add(this.btnTest);
             this.grpFooter.Controls.Add(this.btnStartBatch);
             this.grpFooter.Controls.Add(this.btnClose);
-            this.grpFooter.Location = new System.Drawing.Point(2, 401);
+            this.grpFooter.Location = new System.Drawing.Point(2, 423);
             this.grpFooter.Name = "grpFooter";
             this.grpFooter.Size = new System.Drawing.Size(796, 47);
             this.grpFooter.TabIndex = 13;
@@ -447,16 +447,16 @@ namespace DeponaHR1
             this.grpBatchParams.Controls.Add(this.btnFilesInKallaDir);
             this.grpBatchParams.Location = new System.Drawing.Point(2, 289);
             this.grpBatchParams.Name = "grpBatchParams";
-            this.grpBatchParams.Size = new System.Drawing.Size(612, 47);
+            this.grpBatchParams.Size = new System.Drawing.Size(658, 47);
             this.grpBatchParams.TabIndex = 19;
             this.grpBatchParams.TabStop = false;
             this.grpBatchParams.Text = "Batch params";
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(470, 15);
+            this.progressBar1.Location = new System.Drawing.Point(525, 15);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(132, 23);
+            this.progressBar1.Size = new System.Drawing.Size(127, 23);
             this.progressBar1.TabIndex = 20;
             // 
             // lblFilesInSource
@@ -465,15 +465,15 @@ namespace DeponaHR1
             this.lblFilesInSource.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblFilesInSource.Location = new System.Drawing.Point(336, 19);
             this.lblFilesInSource.Name = "lblFilesInSource";
-            this.lblFilesInSource.Size = new System.Drawing.Size(131, 15);
+            this.lblFilesInSource.Size = new System.Drawing.Size(132, 15);
             this.lblFilesInSource.TabIndex = 16;
-            this.lblFilesInSource.Tag = "\".dat\" Files in Source:  ";
-            this.lblFilesInSource.Text = "\".dat\" Files in Source:  ";
+            this.lblFilesInSource.Tag = "\".pdf\" Files in Source:  ";
+            this.lblFilesInSource.Text = "\".pdf\" Files in Source:  ";
             // 
             // lblProcessedFiles
             // 
             this.lblProcessedFiles.AutoSize = true;
-            this.lblProcessedFiles.Location = new System.Drawing.Point(711, 310);
+            this.lblProcessedFiles.Location = new System.Drawing.Point(769, 310);
             this.lblProcessedFiles.Name = "lblProcessedFiles";
             this.lblProcessedFiles.Size = new System.Drawing.Size(13, 15);
             this.lblProcessedFiles.TabIndex = 21;
@@ -486,9 +486,9 @@ namespace DeponaHR1
             // 
             // progressBarCopyDelete
             // 
-            this.progressBarCopyDelete.Location = new System.Drawing.Point(472, 342);
+            this.progressBarCopyDelete.Location = new System.Drawing.Point(527, 342);
             this.progressBarCopyDelete.Name = "progressBarCopyDelete";
-            this.progressBarCopyDelete.Size = new System.Drawing.Size(132, 23);
+            this.progressBarCopyDelete.Size = new System.Drawing.Size(127, 23);
             this.progressBarCopyDelete.TabIndex = 20;
             // 
             // label8
@@ -513,9 +513,9 @@ namespace DeponaHR1
             // 
             this.grpUnzip.Controls.Add(this.progressBarZip);
             this.grpUnzip.Controls.Add(this.lblZipProgress);
-            this.grpUnzip.Location = new System.Drawing.Point(612, 337);
+            this.grpUnzip.Location = new System.Drawing.Point(467, 371);
             this.grpUnzip.Name = "grpUnzip";
-            this.grpUnzip.Size = new System.Drawing.Size(176, 38);
+            this.grpUnzip.Size = new System.Drawing.Size(193, 46);
             this.grpUnzip.TabIndex = 23;
             this.grpUnzip.TabStop = false;
             this.grpUnzip.Text = "Zip";
@@ -523,9 +523,9 @@ namespace DeponaHR1
             // 
             // progressBarZip
             // 
-            this.progressBarZip.Location = new System.Drawing.Point(55, 17);
+            this.progressBarZip.Location = new System.Drawing.Point(60, 17);
             this.progressBarZip.Name = "progressBarZip";
-            this.progressBarZip.Size = new System.Drawing.Size(115, 15);
+            this.progressBarZip.Size = new System.Drawing.Size(127, 21);
             this.progressBarZip.TabIndex = 23;
             // 
             // timerZip
@@ -536,7 +536,7 @@ namespace DeponaHR1
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(620, 310);
+            this.label9.Location = new System.Drawing.Point(667, 310);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(87, 15);
             this.label9.TabIndex = 24;
@@ -546,7 +546,7 @@ namespace DeponaHR1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 477);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.lblProcessedFiles);
             this.Controls.Add(this.grpUnzip);
@@ -564,10 +564,10 @@ namespace DeponaHR1
             this.Controls.Add(this.grpBatchParams);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(816, 489);
+            this.MaximumSize = new System.Drawing.Size(816, 550);
             this.MinimumSize = new System.Drawing.Size(816, 489);
             this.Name = "Form1";
-            this.Tag = "v. 1.0.7";
+            this.Tag = "v. 1.1.0";
             this.Text = "DeponaHR1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);

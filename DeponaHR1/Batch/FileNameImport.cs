@@ -11,11 +11,13 @@ namespace DeponaHR1.Batch
     public class FileNameImport : IEnumerable<string>
     {
         private string _fileDirectory = null;
-        private List<string> _fileNameList;         // contains all the filenames found in the directory
+        private List<string> _fileNameListDAT;         // contains all the filenames found in the directory
+        private List<string> _fileNameListPDF;
 
         public FileNameImport()
         {
-            _fileNameList = new List<string>();
+            _fileNameListDAT = new List<string>();
+            _fileNameListPDF = new List<string>();
         }
 
         // by 'this' the default constructor is called first
@@ -25,7 +27,7 @@ namespace DeponaHR1.Batch
             this.ReadFileNamesToArray();
         }
 
-        internal void ReadFileNamesToArray()
+        private void ReadFileNamesToArray()
         {
             if (Directory.Exists(_fileDirectory))
             {
@@ -37,24 +39,37 @@ namespace DeponaHR1.Batch
                     var filenameClean = fileName.Replace(".\\", "");
                     if(Path.GetExtension(filenameClean).Equals(".dat"))
                     {
-                        _fileNameList.Add(filenameClean);
+                        _fileNameListDAT.Add(filenameClean);
                     }
                 }
-                
+
+                foreach (var fileName in fileNames)
+                {
+                    var filenameClean = fileName.Replace(".\\", "");
+                    if (Path.GetExtension(filenameClean).Equals(".pdf"))
+                    {
+                        _fileNameListPDF.Add(filenameClean);
+                    }
+                }
+
             }
             else
             {
                 string message = $"Ogiltig parameter [{_fileDirectory}] i ini-filen.";
-                //ConfigData.WriteLogMessage(message, "err");
             }
         }
 
         //2019-10-29: Install generic IEnumerable Method: GetEnumerator(){}
         public IEnumerator<string> GetEnumerator()
         {
-            foreach (var item in _fileNameList)
+            foreach (var DATitem in _fileNameListDAT)
             {
-                yield return item;
+                yield return DATitem;
+            }
+
+            foreach (var PDFitem in _fileNameListPDF)
+            {
+                yield return PDFitem;
             }
         }
 
@@ -63,24 +78,34 @@ namespace DeponaHR1.Batch
             return GetEnumerator();
         }
 
-        public List<string> getFileNamesCollection()
+        public List<string> getFileNamesCollectionDAT()
         {
-            return _fileNameList;
+            return _fileNameListDAT;
+        }
+
+        public List<string> getFileNamesCollectionPDF()
+        {
+            return _fileNameListPDF;
         }
 
         //method
         public void ShowFileNames()
         {
-            foreach (string s in _fileNameList)
+            foreach (string s in _fileNameListDAT)
             {
                 Console.WriteLine("filename: " + s);
             }
         }
 
         //method
-        public int GetNumberOfFiles()
+        public int GetNumberOfDATFiles()
         {
-            return _fileNameList.Count;
+            return _fileNameListDAT.Count;
+        }
+
+        public int GetNumberOfPDFFiles()
+        {
+            return _fileNameListPDF.Count;
         }
 
         //property

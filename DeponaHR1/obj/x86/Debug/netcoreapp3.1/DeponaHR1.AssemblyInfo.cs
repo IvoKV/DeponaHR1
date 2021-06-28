@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCopyrightAttribute("Region Stockholm, SF IT, MLT")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Processar Depona leveranser till utvald destination.")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.7")]
 [assembly: System.Reflection.AssemblyProductAttribute("DeponaHR1")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DeponaHR1")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

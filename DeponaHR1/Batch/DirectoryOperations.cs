@@ -57,7 +57,6 @@ namespace DeponaHR1.Batch
                 fi.CopyTo(Path.Combine(diTarget, fi.Name), true);
                 copyCounter++;
                 DeponaConfig.Configuration.IncrementFileManipCount();
-                //DeponaConfig.Configuration.WriteLogMessage(DeponaConfig.Configuration.GetProcessControlFlowInstance("FileManipCount").ToString());
             }
             string copyMess = $"Kopierade {copyCounter} filer från 'Source' till 'Done'.\n";
             DeponaConfig.Configuration.WriteLogMessage(copyMess);
@@ -78,7 +77,7 @@ namespace DeponaHR1.Batch
             DeponaConfig.Configuration.WriteLogMessage(deleteMess);
         }
 
-        internal int UnlockWorkFolder(int suff)
+        internal async Task<int> UnlockWorkFolder(int suff)
         {
             string workFolder = Path.Combine(DeponaConfig.Configuration.GetMappSettingsInstance("Destination"),
                                     DeponaConfig.Configuration.GetProcessSettingsInstance("DeponaFakt") +
@@ -87,7 +86,7 @@ namespace DeponaHR1.Batch
             string lockedFolder = workFolder + ".lock";
 
             var mapCheck = new AsyncAwaitMapControl();
-            Task task1 = mapCheck.ControlMap();
+            await mapCheck.ControlMap();
 
             int retval = -1;
 
@@ -120,8 +119,6 @@ namespace DeponaHR1.Batch
                 for (int i = suff; i > 0; i--)
                 {
                     string suffix = "-" + i.ToString();
-                    //string lockedFolderName = ConfigData._currBatch + suffix + ".lock";
-                    //DirectoryInfo dinf = new DirectoryInfo(Path.Combine(ConfigData._destPath, lockedFolderName));
                     DirectoryInfo dinf = new DirectoryInfo(lockedFolder);
 
                     int iteration = 0;
@@ -130,9 +127,7 @@ namespace DeponaHR1.Batch
                         iteration++;
                         try
                         {
-                            //dinf.MoveTo(Path.Combine(ConfigData._destPath, ConfigData._currBatch + suffix));
                             dinf.MoveTo(workFolder);
-                            //ConfigData.WriteLogMessage($"Upplåsningen av batch-suffix {i} lyckades vid försök nr {iteration}", "log");
                             DeponaConfig.Configuration.WriteLogMessage($"Upplåsningen av batch-suffix {i} lyckades vid försök nr {iteration}");
 
                             if (retval != 0)
@@ -144,7 +139,6 @@ namespace DeponaHR1.Batch
                         catch (Exception e)
                         {
                             string error = $"Upplåsningen av batch-suffix {i} misslyckades vid försök nr: {iteration}. Sys-message: {e.Message}. Försöker igen om 3 sekunder";
-                            //ConfigData.WriteLogMessage($"ERROR: {error}", "err");
                             DeponaConfig.Configuration.WriteLogMessage($"ERROR: {error}");
                             retval = 0;
                             Thread.Sleep(3000);
@@ -157,11 +151,11 @@ namespace DeponaHR1.Batch
 
         public class AsyncAwaitMapControl
         {
-            public async Task<int> ControlMap()
+            public async Task ControlMap()
             {
-                Task<int> task = ControlAllFilesMovedToDestination();
+                int a = await ControlAllFilesMovedToDestination();
 
-                return 0;
+                return;
             }
 
             private async Task<int> ControlAllFilesMovedToDestination()
@@ -172,7 +166,7 @@ namespace DeponaHR1.Batch
                 while (goOn)
                 {
                     if(DeponaConfig.Configuration.GetProcessControlFlowInstance("NumProcessedFiles") < 
-                        DeponaConfig.Configuration.GetProcessControlFlowInstance("NumFilesInSourceDir") && tryCases > 0)
+                        DeponaConfig.Configuration.GetProcessControlFlowInstance("NumPDFFilesInSourceDir") && tryCases > 0)
                     {
                         Thread.Sleep(2000);
                         tryCases--;
@@ -184,7 +178,7 @@ namespace DeponaHR1.Batch
                         DeponaConfig.Configuration.WriteLogMessage(message);
                     }
                     else if (DeponaConfig.Configuration.GetProcessControlFlowInstance("NumProcessedFiles") ==
-                            DeponaConfig.Configuration.GetProcessControlFlowInstance("NumFilesInSourceDir"))        //(ConfigData._bearbetadeFiler == ConfigData._numberOfFiles)
+                            DeponaConfig.Configuration.GetProcessControlFlowInstance("NumPDFFilesInSourceDir"))        //(ConfigData._bearbetadeFiler == ConfigData._numberOfFiles)
                     {
                         goOn = false;
                     }
