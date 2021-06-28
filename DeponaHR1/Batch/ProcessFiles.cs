@@ -16,7 +16,7 @@ namespace DeponaHR1.Batch
         private string _idxFileOutName;
         private string _pdfFileName;
         private string _pdfFilenameOut = "0000001.pdf";
-        private string _fileCSVContent;
+        string _fileCSVContent1;
         private string DATIndicyAttributes;
 
         private bool _updateFileContent = false;     // if the .dat file content shoud be changed
@@ -53,11 +53,24 @@ namespace DeponaHR1.Batch
             _idxFileOutName = "0000idx.dat";
             _idxFileOutName = _idxFileOutName.Insert(4, _rond.ToString());
             _pdfFileName = _fileItemName.Replace("dat", "pdf");
-            _fileCSVContent = DATIndicyAttributes;
+            string _fileCSVContent = DATIndicyAttributes;
+
+            int tempIndex = 0;
+            const int n = 3;
+            for (int i = 0; i < n; i++)
+            {
+                if (_fileCSVContent.Length - 1 >= tempIndex)
+                {
+                    tempIndex = _fileCSVContent.IndexOf(';', tempIndex);
+                    tempIndex++;
+                }
+            }
+
+            _fileCSVContent1 = _fileCSVContent.Insert(tempIndex - 1, ";;"); // Ändring enligt önskemål av Gustav Öhman, konsult OP
 
             if (_updateFileContent)
             {
-                _fileCSVContent = "0000" + _rond + _mapY + _mapX + ";" + _fileCSVContent;
+                _fileCSVContent1 = "0000" + _rond + _mapY + _mapX + ";" + _fileCSVContent1;
             }
         }
 
@@ -65,11 +78,11 @@ namespace DeponaHR1.Batch
         {
             string lockedBatchName = DeponaConfig.Configuration.GetProcessSettingsInstance("DeponaFakt") + DeponaConfig.Configuration.GetProcessSettingsInstance("BatchNo") + _currentBatchSuffix + ".lock";
             string DATfileNameOut = Path.Combine(DeponaConfig.Configuration.GetMappSettingsInstance("Destination"), lockedBatchName, _mapX, _mapY, _idxFileOutName);
-            File.WriteAllText(DATfileNameOut, _fileCSVContent, Encoding.Default);
+            File.WriteAllText(DATfileNameOut, _fileCSVContent1, Encoding.Default);
             
             if (File.Exists(_pdfFileName))  
             {
-                string[] csv = _fileCSVContent.Split(";");
+                string[] csv = _fileCSVContent1.Split(";");
 
                 string pdfFileName = csv[csv.Length - 1].Trim();
                 string pdfFileNameOut = _pdfFilenameOut.Insert(4, _rond.ToString());
