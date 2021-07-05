@@ -11,6 +11,7 @@
     <Description>Processar Depona leveranser till utvald destination.</Description>
     <StartupObject>DeponaHR1.Program</StartupObject>
     <Platforms>AnyCPU;x86</Platforms>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,6 +20,7 @@
     <PackageReference Include="squirrel.windows" Version="1.9.0" />
     <PackageReference Include="System.Collections.Specialized" Version="4.3.0" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>

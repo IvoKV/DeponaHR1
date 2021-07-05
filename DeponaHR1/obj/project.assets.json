@@ -5763,6 +5763,7 @@
       "DotNetZip >= 1.15.0",
       "System.Collections.Specialized >= 4.3.0",
       "System.Configuration.ConfigurationManager >= 5.0.0",
+      "System.Text.Encoding.CodePages >= 5.0.0",
       "squirrel.windows >= 1.9.0"
     ]
   },
@@ -5823,6 +5824,10 @@
             "version": "[4.3.0, )"
           },
           "System.Configuration.ConfigurationManager": {
+            "target": "Package",
+            "version": "[5.0.0, )"
+          },
+          "System.Text.Encoding.CodePages": {
             "target": "Package",
             "version": "[5.0.0, )"
           },

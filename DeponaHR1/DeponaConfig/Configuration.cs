@@ -82,7 +82,6 @@ namespace DeponaHR1.DeponaConfig
             }
         }
 
-
         private static void InitializeDictionaries()
         {
             var mappConfig = (MappConfig)ConfigurationManager.GetSection("mappSettings");
@@ -136,7 +135,7 @@ namespace DeponaHR1.DeponaConfig
         {
             return _dictMapp;
         }
-
+        
         internal static string GetMappSettingsInstance(string key)
         {
             return _dictMapp[key];

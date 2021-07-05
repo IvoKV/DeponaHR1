@@ -44,7 +44,7 @@ namespace DeponaHR1.Batch
             string currentDirPath = Directory.GetCurrentDirectory();
             string filePathName = Path.Combine(Directory.GetCurrentDirectory(), datFileNames[0]);
 
-            using (StreamReader streamReader = new StreamReader(filePathName, Encoding.UTF7))
+            using (StreamReader streamReader = new StreamReader(filePathName, Encoding.GetEncoding(1252)))
             {
                 while (streamReader.Peek() >= 0)
                 {

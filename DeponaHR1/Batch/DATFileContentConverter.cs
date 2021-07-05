@@ -9,6 +9,7 @@ namespace DeponaHR1.Batch
     class DATFileContentConverter
     {
         private Dictionary<int, string> datFileAttributesRows;
+
         public DATFileContentConverter()
         {
             datFileAttributesRows = new Dictionary<int, string>();
@@ -18,7 +19,8 @@ namespace DeponaHR1.Batch
         {
             Directory.SetCurrentDirectory(DeponaConfig.Configuration.GetMappSettingsInstance("Source"));
             int indexCounter = -1;
-            using (StreamReader streamReader = new StreamReader(datFileName, Encoding.UTF7))
+
+            using (StreamReader streamReader = new StreamReader(datFileName, Encoding.GetEncoding(1252)))
             {
                 while (streamReader.Peek() >= 0)
                 {

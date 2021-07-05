@@ -78,8 +78,9 @@ namespace DeponaHR1.Batch
         {
             string lockedBatchName = DeponaConfig.Configuration.GetProcessSettingsInstance("DeponaFakt") + DeponaConfig.Configuration.GetProcessSettingsInstance("BatchNo") + _currentBatchSuffix + ".lock";
             string DATfileNameOut = Path.Combine(DeponaConfig.Configuration.GetMappSettingsInstance("Destination"), lockedBatchName, _mapX, _mapY, _idxFileOutName);
-            File.WriteAllText(DATfileNameOut, _fileCSVContent1, Encoding.Default);
-            
+            //File.WriteAllText(DATfileNameOut, _fileCSVContent1, Encoding.Default);
+            File.WriteAllText(DATfileNameOut, _fileCSVContent1, Encoding.GetEncoding(1252));
+
             if (File.Exists(_pdfFileName))  
             {
                 string[] csv = _fileCSVContent1.Split(";");

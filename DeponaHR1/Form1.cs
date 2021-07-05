@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -26,8 +27,7 @@ namespace DeponaHR1
         {
             InitializeComponent();
 
-            this.Text = "DeponaHR1 " + this.Tag.ToString();
-            //txtDestination.TextChanged += new System.EventHandler(Text_Changed);
+            //this.Text = "DeponaHR1 " + this.Tag.ToString();   DEPRICATED! Is managed by System Diagnostics
             txtSource.TextChanged += new EventHandler(Text_Changed);
             txtDone.TextChanged += new EventHandler(Text_Changed);
             txtLog.TextChanged += new EventHandler(Text_Changed);
@@ -37,6 +37,8 @@ namespace DeponaHR1
 
             AddVersionNumber();
             CheckForUpdates();
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
         }
 
         private void AddVersionNumber()
@@ -45,7 +47,7 @@ namespace DeponaHR1
             FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
 
             // todo: implement version handling
-            //this.Text += $" v. {versionInfo.FileVersion}";
+            this.Text += $" v. {versionInfo.FileVersion}";
         }
 
         private async Task CheckForUpdates()
